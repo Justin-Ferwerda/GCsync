@@ -35,11 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'corsheaders',
+    'adminapp',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'adminapp'
 ]
 
 SITE_ID = 1
@@ -47,9 +47,21 @@ SITE_ID = 1
 UNFOLD = {
     "SITE_TITLE": "Google Classroom Admin",
     "SITE_HEADER": "Google Classroom Sync",
+    "NAVBAR_ITEMS": [
+        {
+            "label": "Sync Assignments",
+            "icon": "refresh-cw",
+            "url": "/sync/",
+            "permissions": ["classroom.view_classroomassignment"],
+        }
+    ]
 }
 
-LOGIN_REDIRECT_URL = "/admin"
+SOCIALACCOUNT_ADAPTER = "adminapp.adapters.CustomSocialAccountAdapter"
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+LOGIN_REDIRECT_URL = '/post-login-sync/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -66,7 +78,10 @@ SOCIALACCOUNT_PROVIDERS = {
             'https://www.googleapis.com/auth/classroom.coursework.students',
             'https://www.googleapis.com/auth/classroom.courses.readonly'
         ],
-        'AUTH_PARAMS': { 'access_type': 'online' },
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+            'prompt': 'consent',
+        },
         'APP': {
             'client_id': env('GOOGLE_CLIENT_ID'),
             'secret': env('GOOGLE_CLIENT_SECRET')

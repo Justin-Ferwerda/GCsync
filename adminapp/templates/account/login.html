@@ -1,0 +1,20 @@
+{% extends "account/base_entrance.html" %}
+
+{% load socialaccount %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-sm text-center">
+    <h1 class="text-2xl font-semibold mb-6">Log in with Google</h1>
+    <a href="{% provider_login_url 'google' %}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg shadow transition-all duration-200">
+      <svg class="w-5 h-5" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg">
+        <path d="M533.5 278.4c0-17.4-1.6-34.1-4.7-50.2H272v95.1h146.9c-6.3 33.9-25.4 62.6-54.2 81.8v67h87.7c51.3-47.3 81.1-117 81.1-193.7z" fill="#4285F4"/>
+        <path d="M272 544.3c73.3 0 134.8-24.2 179.7-65.6l-87.7-67c-24.4 16.3-55.4 25.8-92 25.8-70.6 0-130.4-47.6-151.9-111.3h-90.1v69.9c44.7 88 136.6 148.2 242 148.2z" fill="#34A853"/>
+        <path d="M120.1 326.2c-10.4-30.8-10.4-64.2 0-95l-90-69.9C-1.7 221.5-1.7 322.8 30.1 390.4l90-69.9z" fill="#FBBC05"/>
+        <path d="M272 107.7c39.9 0 75.8 13.7 104 40.6l78.2-78.2C406.8 24.2 345.3 0 272 0 166.6 0 74.7 60.2 30.1 148.2l90 69.9c21.5-63.7 81.3-110.4 151.9-110.4z" fill="#EA4335"/>
+      </svg>
+      <span>Continue with Google</span>
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -13,6 +13,8 @@ pylint-django = "==2.5.3"
 django-unfold = "*"
 django-allauth = {extras = ["socialaccount"], version = "*"}
 django-environ = "*"
+google-auth = "*"
+google-api-python-client = "*"
 
 [dev-packages]
 
