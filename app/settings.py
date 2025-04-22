@@ -35,33 +35,33 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'corsheaders',
-    'adminapp',
+    'tailwind',
+    'gcsync',
+    'django_browser_reload',
+    'allauth_ui',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'widget_tweaks',
+    'slippers'
 ]
 
 SITE_ID = 1
 
 UNFOLD = {
     "SITE_TITLE": "Google Classroom Admin",
-    "SITE_HEADER": "Google Classroom Sync",
-    "NAVBAR_ITEMS": [
-        {
-            "label": "Sync Assignments",
-            "icon": "refresh-cw",
-            "url": "/sync/",
-            "permissions": ["classroom.view_classroomassignment"],
-        }
-    ]
+    "SITE_HEADER": "Google Classroom Sync"
 }
 
-SOCIALACCOUNT_ADAPTER = "adminapp.adapters.CustomSocialAccountAdapter"
+TAILWIND_APP_NAME = 'gcsync'
+INTERNAL_IPS = ['127.0.0.1']
+ALLAUTH_UI_THEME = "light"
+
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-LOGIN_REDIRECT_URL = '/post-login-sync/'
+LOGIN_REDIRECT_URL = '/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -99,6 +99,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
     'allauth.account.middleware.AccountMiddleware'
 ]
 

@@ -15,16 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
-from allauth.account.decorators import secure_admin_login
-from adminapp.views import sync_teacher_and_assignments
-
-admin.autodiscover()
-admin.site.login = secure_admin_login(admin.site.login)
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', lambda request: redirect('/admin/')),
+    path('', TemplateView.as_view(template_name='base.html'), name='home'),
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('sync/', sync_teacher_and_assignments, name="sync-teacher-assignments"),
+    path('__reload__/', include("django_browser_reload.urls")),
+    path('accounts/', include('allauth.urls'))
 ]

@@ -1,0 +1,18 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		{% tailwind_css %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-base-100 text-base-content">
+    <div class="text-center class="bg-base-100 text-base-content p-4"">
+        <h1 class="text-5xl font-bold mb-4">Welcome to Google Classroom Sync!</h1>
+        <p class="text-lg mb-6">Please sign in to continue.</p>
+        <a href="{% url 'account_login' %}" class="btn btn-primary">Sign In</a>
+				<button class="btn btn-primary">Test Button</button>
+    </div>		
+</body>
+</html>
