@@ -58,6 +58,10 @@ TAILWIND_APP_NAME = 'gcsync'
 INTERNAL_IPS = ['127.0.0.1']
 ALLAUTH_UI_THEME = "light"
 
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+SOCIALACCOUNT_ADAPTER = "gcsync.adapters.AutoLinkSocialAccountAdapter"
+SOCIALACCOUNT_STORE_TOKENS = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
@@ -65,9 +69,18 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+AUTH_USER_MODEL = 'gcsync.Teacher'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default
     'allauth.account.auth_backends.AuthenticationBackend',  # Allauth
+]
+
+GOOGLE_TOKEN_URI = 'https://oauth2.googleapis.com/token'
+GOOGLE_CLIENT_SCOPES = [
+    'https://www.googleapis.com/auth/classroom.courses.readonly',
+    'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
+    'https://www.googleapis.com/auth/classroom.coursework.students',
+    'https://www.googleapis.com/auth/classroom.coursework.students.readonly'
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
