@@ -1,5 +1,4 @@
 {% load static tailwind_tags %}
-{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +8,7 @@
     <title>Home</title>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-base-100 text-base-content">
-    <div class="text-center class="bg-base-100 text-base-content p-4"">
-        <h1 class="text-5xl font-bold mb-4">Welcome to Google Classroom Sync!</h1>
-        <p class="text-lg mb-6">Please sign in to continue.</p>
-        <a href="{% url 'account_login' %}" class="btn btn-primary">Sign In</a>
-        {% if not user.socialaccount_set.all %}
-          <p>Please log in with Google to access your dashboard.</p>
-          <a href="{% provider_login_url 'google' %}">Log in with Google</a>
-        {% endif %}
-    </div>		
+  {% block content %}
+  {% endblock content %}		
 </body>
 </html>
