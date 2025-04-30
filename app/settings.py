@@ -75,13 +75,8 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',  # Allauth
 ]
 
-GOOGLE_TOKEN_URI = 'https://oauth2.googleapis.com/token'
-GOOGLE_CLIENT_SCOPES = [
-    'https://www.googleapis.com/auth/classroom.courses.readonly',
-    'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
-    'https://www.googleapis.com/auth/classroom.coursework.students',
-    'https://www.googleapis.com/auth/classroom.coursework.students.readonly'
-]
+GOOGLE_TOKEN_URI = env('GOOGLE_TOKEN_URI')
+GOOGLE_CLIENT_SCOPES = env.list('GOOGLE_CLIENT_SCOPES')
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

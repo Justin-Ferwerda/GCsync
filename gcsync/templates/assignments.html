@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% block content %}
+<form method="post" action="{% url 'bulk_update_assignments' %}">
+  {% csrf_token %}
+
+  {% for course, assignments in assignments_by_course.items %}
+    <h2>{{ course }}</h2>
+    <ul>
+      {% for assignment in assignments %}
+        <li>
+          <strong>{{ assignment.title }}</strong><br>
+
+          Due Date:
+          <input type="date" name="due_date_{{ assignment.id }}" value="{{ assignment.dueDate|default:''|date:'Y-m-d' }}">
+
+          Scheduled Date:
+          <input type="date" name="scheduled_date_{{ assignment.id }}" value="{{ assignment.scheduledDate|default:''|date:'Y-m-d' }}">
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+
+  <button type="submit">Update Assignments</button>
+</form>
+{% endblock content %}

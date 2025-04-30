@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from gcsync.views import classroom_assignments_view, bulk_update_assignments_view
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='base.html'), name='home'),
+    path('', TemplateView.as_view(template_name='signin.html'), name='signin'),
     path('admin/', admin.site.urls),
     path('__reload__/', include("django_browser_reload.urls")),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('assignments/', classroom_assignments_view, name='classroom_assignments'),
+    path('assignments/update/', bulk_update_assignments_view, name='bulk_update_assignments')
 ]
